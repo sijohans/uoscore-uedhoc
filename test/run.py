@@ -114,7 +114,6 @@ def save(name, arc):
     if (name == 'libuedhoc.a'):
         t.add('../modules/edhoc/edhoc.h', arcname='edhoc.h')
 
-
     if (name == 'libuoscore.a'):
         t.add('../modules/oscore/oscore.h', arcname='oscore.h')
 
@@ -162,12 +161,15 @@ def main():
     """
     clean_all()
 
+    # build('libuedhoc.a', '-O0', arc('native_posix', 'x86'))
+    # test(arc('native_posix', 'x86'))
+
     # x86
-    #run_tests('libuoscore.a', arc('native_posix', 'x86'))
-    run_tests('libuedhoc.a', arc('native_posix', 'x86'))
+    run_tests('libuoscore.a', arc('native_posix', 'x86'))
+    #run_tests('libuedhoc.a', arc('native_posix', 'x86'))
 
     # x86-64
-    #run_tests('libuoscore.a', arc('native_posix_64', 'x86-64'))
+    run_tests('libuoscore.a', arc('native_posix_64', 'x86-64'))
     #run_tests('libuedhoc.a', arc('native_posix_64', 'x86-64'))
 
     # to run the following tests a real hardware must be connect to the PC
@@ -190,7 +192,6 @@ def main():
     # Cortex M33
     #run_tests('libuoscore.a', arc('nrf9160dk_nrf9160', 'cortex-m33'))
     #run_tests('libuedhoc.a', arc('nrf9160dk_nrf9160', 'cortex-m33'))
-
 
 
 if __name__ == "__main__":
