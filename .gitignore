@@ -4,3 +4,6 @@ build_lib_test
 .vscode
 *.cproject
 *.project
+cmake-*
+build*
+.idea
