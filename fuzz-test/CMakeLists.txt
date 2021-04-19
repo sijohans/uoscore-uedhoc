@@ -10,3 +10,4 @@ macro(add_fuzz arg)
 endmacro(add_fuzz)
 
 add_fuzz(fuzz_buf2coap oscore)
+add_fuzz(fuzz_oscore2coap oscore test_vectors)

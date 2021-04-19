@@ -11,7 +11,8 @@ include(cmake/utils.cmake)
 add_library(cbor
     externals/tinycbor/src/cborencoder.c
     externals/tinycbor/src/cborparser.c
-    externals/tinycbor/src/cbor_buf_writer.c)
+    externals/tinycbor/src/cbor_buf_writer.c
+    externals/tinycbor/src/cbor_buf_reader.c)
 add_sanitizers(cbor)
 target_include_directories(cbor PUBLIC externals/tinycbor/src)
 
@@ -111,3 +112,42 @@ if(BUILD_PLAYGROUND)
     add_sanitizers(playground)
 endif(BUILD_PLAYGROUND)
 add_subdirectory(fuzz-test)
+
+
+option(BUILD_SAMPLES "Build samples" ON)
+if(BUILD_SAMPLES)
+    add_library(sock samples/common/sock.c)
+    target_include_directories(sock PUBLIC samples/common)
+    add_sanitizers(sock)
+
+    add_library(cantcoap
+        externals/cantcoap/cantcoap.cpp)
+    target_include_directories(cantcoap PUBLIC externals/cantcoap)
+
+    add_executable(oscore_linux_server
+        samples/oscore_linux/server/src/credentials.c
+        samples/oscore_linux/server/src/main.cpp)
+    target_link_libraries(oscore_linux_server oscore cantcoap sock)
+    add_sanitizers(oscore_linux_server)
+
+    add_executable(oscore_linux_client
+        samples/oscore_linux/client/src/credentials.c
+        samples/oscore_linux/client/src/main.cpp)
+    target_link_libraries(oscore_linux_client oscore cantcoap sock)
+    add_sanitizers(oscore_linux_client)
+
+    add_executable(edhoc_linux_initiator
+        samples/edhoc_linux/initiator/src/credentials.c
+        samples/edhoc_linux/initiator/src/i_txrx_wrapper.c
+        samples/edhoc_linux/initiator/src/main.cpp)
+    target_link_libraries(edhoc_linux_initiator edhoc sock cantcoap)
+    add_sanitizers(edhoc_linux_initiator)
+
+    add_executable(edhoc_linux_responder
+        samples/edhoc_linux/responder/src/credentials.c
+        samples/edhoc_linux/responder/src/r_txrx_wrapper.c
+        samples/edhoc_linux/responder/src/main.cpp)
+    target_link_libraries(edhoc_linux_responder edhoc sock cantcoap)
+    add_sanitizers(edhoc_linux_responder)
+
+endif(BUILD_SAMPLES)

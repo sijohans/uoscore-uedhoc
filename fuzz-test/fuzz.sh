@@ -63,7 +63,7 @@ build_targets() {
         -DCMAKE_CXX_COMPILER_WORKS=1 \
         -DCMAKE_CXX_COMPILER=clang++ \
         -DCMAKE_C_COMPILER=clang \
-        -DBUILD_PLAYGROUND=Off \
+        -DBUILD_PLAYGROUND=Off -DBUILD_SAMPLES=Off \
         -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=fuzzer" \
         -DCMAKE_C_FLAGS="-std=c99 -Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer -DFUZZ_TOOL=1" \
         -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer -DFUZZ_TOOL=1" ../.. && \
@@ -75,7 +75,7 @@ build_targets() {
         -DCMAKE_CXX_COMPILER_WORKS=1 \
         -DCMAKE_CXX_COMPILER=clang++ \
         -DCMAKE_C_COMPILER=clang \
-        -DBUILD_PLAYGROUND=Off \
+        -DBUILD_PLAYGROUND=Off -DBUILD_SAMPLES=Off \
         -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=fuzzer,address" \
         -DCMAKE_C_FLAGS="-std=c99 -Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer,address -DFUZZ_TOOL=1" \
         -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer,address -DFUZZ_TOOL=1" ../.. && \
@@ -87,7 +87,7 @@ build_targets() {
         -DCMAKE_CXX_COMPILER_WORKS=1 \
         -DCMAKE_CXX_COMPILER=clang++ \
         -DCMAKE_C_COMPILER=clang \
-        -DBUILD_PLAYGROUND=Off \
+        -DBUILD_PLAYGROUND=Off -DBUILD_SAMPLES=Off \
         -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=fuzzer,signed-integer-overflow" \
         -DCMAKE_C_FLAGS="-std=c99 -Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer,signed-integer-overflow -DFUZZ_TOOL=1" \
         -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer,signed-integer-overflow -DFUZZ_TOOL=1" ../.. && \
@@ -99,7 +99,7 @@ build_targets() {
         -DCMAKE_CXX_COMPILER_WORKS=1 \
         -DCMAKE_CXX_COMPILER=clang++ \
         -DCMAKE_C_COMPILER=clang \
-        -DBUILD_PLAYGROUND=Off \
+        -DBUILD_PLAYGROUND=Off -DBUILD_SAMPLES=Off \
         -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=fuzzer,memory" \
         -DCMAKE_C_FLAGS="-std=c99 -Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer,memory -DFUZZ_TOOL=1" \
         -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic -g -O1 -fsanitize=fuzzer,memory -DFUZZ_TOOL=1" ../.. && \
