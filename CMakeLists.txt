@@ -71,7 +71,7 @@ add_library(edhoc
     modules/edhoc/src/retrieve_cred.c
     modules/edhoc/src/okm.c)
 
-target_include_directories(edhoc PUBLIC modules/edhoc)
+target_include_directories(edhoc PUBLIC modules/edhoc modules/edhoc/inc)
 target_compile_definitions(edhoc PUBLIC -DEDHOC_WITH_TINYCRYPT_AND_C25519)
 target_link_libraries(edhoc compact25519 tinycrypt cbor)
 add_sanitizers(edhoc)
@@ -104,6 +104,7 @@ add_library(test_vectors
     test/src/test_vectors_oscore.c)
 target_include_directories(test_vectors PUBLIC test/src)
 target_link_libraries(test_vectors oscore edhoc)
+
 
 option(BUILD_PLAYGROUND "Build playground" ON)
 if(BUILD_PLAYGROUND)

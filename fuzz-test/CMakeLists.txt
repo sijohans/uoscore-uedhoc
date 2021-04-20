@@ -9,5 +9,13 @@ macro(add_fuzz arg)
 
 endmacro(add_fuzz)
 
+add_library(responder_credentials ../samples/edhoc_linux/responder/src/credentials.c)
+target_include_directories(responder_credentials PUBLIC ../samples/edhoc_linux/responder/src)
+add_sanitizers(responder_credentials)
+add_library(initiator_credentials ../samples/edhoc_linux/initiator/src/credentials.c)
+target_include_directories(initiator_credentials PUBLIC ../samples/edhoc_linux/initiator/src)
+add_sanitizers(initiator_credentials)
+
 add_fuzz(fuzz_buf2coap oscore)
 add_fuzz(fuzz_oscore2coap oscore test_vectors)
+add_fuzz(fuzz_msg1parse edhoc responder_credentials)
