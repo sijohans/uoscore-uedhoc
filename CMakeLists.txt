@@ -105,12 +105,9 @@ add_library(test_vectors
 target_include_directories(test_vectors PUBLIC test/src)
 target_link_libraries(test_vectors oscore edhoc)
 
-
 option(BUILD_PLAYGROUND "Build playground" ON)
 if(BUILD_PLAYGROUND)
-    add_executable(playground playground/main.c)
-    target_link_libraries(playground oscore cbor tinycrypt edhoc test_vectors)
-    add_sanitizers(playground)
+    add_subdirectory(playground)
 endif(BUILD_PLAYGROUND)
 add_subdirectory(fuzz-test)
 

@@ -1,6 +1,6 @@
 #include "main_entry.h"
 #include "oscore.h"
-#include "test_vectors_oscore.h"+
+#include "test_vectors_oscore.h"
 #include <stdlib.h>
 
 bool fuzz_one_input(const uint8_t *data, size_t size)
